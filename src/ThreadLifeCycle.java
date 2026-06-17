@@ -37,6 +37,5 @@ public class ThreadLifeCycle {
          t1.join();
          t2.join();
         System.out.println("5. State after t1 finish execution " + t1.getState());
-
     }
 }

@@ -38,3 +38,15 @@ class BankAccount {
         return balance;
     }
 }
+public  class Synchronization {
+    static void main() {
+        BankAccount sharedAccount = new BankAccount();
+        Runnable withdrewTask = () -> {
+            sharedAccount.withdrewUnsafe(800);
+        };
+        Thread threadA = new Thread(withdrewTask , "Thread-A (Mobile App)");
+        Thread threadB = new Thread(withdrewTask, "Thread-B (WEB-Dashboard)");
+        threadA.start();
+        threadB.start();
+    }
+}
