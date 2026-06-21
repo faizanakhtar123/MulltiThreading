@@ -19,6 +19,7 @@ public class CallableDemo {
         System.out.println("Main thread is doing other thing while calculating run");
         // Warning calling .get() is Blocking call;
         // The main thread will freeze here unit the calculation is 100% finished.
+        // this
         Integer finalResult = futureResult.get();
         System.out.println("The result is "+ finalResult);
         executor.shutdown();
