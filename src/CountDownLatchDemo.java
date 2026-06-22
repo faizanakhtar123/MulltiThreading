@@ -15,3 +15,26 @@ public class CountDownLatchDemo {
         System.out.println("Main Server: All services are UP. Accepting traffic");
     }
 }
+class ServiceStarted implements Runnable{
+    private final String servicesName;
+    private final  CountDownLatch latch;
+    public ServiceStarted(String servicesName , CountDownLatch latch){
+        this.servicesName = servicesName;
+        this.latch = latch;
+    }
+
+    @Override
+    public void run() {
+        try {
+            // simulates bootup time(1 to 3 sec )
+            long bootTime = (long) (Math.random() * 2000 + 1000);
+            Thread.sleep(bootTime);
+            System.out.println(servicesName + "is up and running");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            latch.countDown();
+        }
+
+    }
+}
